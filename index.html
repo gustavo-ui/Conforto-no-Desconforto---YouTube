@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Conforto no Desconforto YouTube</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: deck de slides 16:9 empilhados, alternando fundo escuro e creme, no mesmo estilo do relatório do Instagram. Tudo escala com a largura do slide (cqw). */
+:root{
+  color-scheme:dark;
+  --ink:#17130f; --ink-card:#221c17; --ink-line:#352d25; --ink-muted:#b5aa9a;
+  --paper:#f3eee6; --paper-card:#fbf8f2; --paper-line:#e2d9cc; --paper-muted:#5f564b; --paper-ink:#1c1712;
+  --orange:#e2682c; --orange-deep:#b8471e; --tan:#cbbfae; --tan-dark:#6d6256;
+  --display:'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --body:'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+html,body{height:100%}
+body{background:#0e0b09;color:var(--paper);font-family:var(--body);padding-inline:16px;padding-block:16px 96px}
+.deck{max-width:1280px;margin-inline:auto;display:flex;flex-direction:column;gap:20px;counter-reset:pg}
+.slide{counter-increment:pg;width:100%;aspect-ratio:16/9;container-type:size;border-radius:10px;overflow:hidden;position:relative;scroll-margin-top:16px}
+.in{position:absolute;inset:0;padding:6cqw 6.7cqw 7.6cqw;display:flex;flex-direction:column;gap:2cqw;font-size:1.5cqw;line-height:1.45}
+.dark{background:var(--ink);color:var(--paper)}
+.light{background:var(--paper);color:var(--paper-ink)}
+.dark{--card:var(--ink-card);--line:var(--ink-line);--muted:var(--ink-muted);--num:var(--orange);--bar:var(--tan-dark)}
+.light{--card:var(--paper-card);--line:var(--paper-line);--muted:var(--paper-muted);--num:var(--orange-deep);--bar:var(--tan)}
+.foot{position:absolute;left:6.7cqw;right:6.7cqw;bottom:3.3cqw;display:flex;justify-content:space-between;font-size:1.2cqw;color:var(--muted)}
+.foot::after{content:counter(pg, decimal-leading-zero)}
+.eyebrow{font-size:1.2cqw;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--num)}
+h1,h2,h3,p{margin:0}
+h2{font-family:var(--display);font-weight:400;font-size:3.75cqw;line-height:1.08;text-wrap:balance}
+.head{display:flex;flex-direction:column;gap:.7cqw}
+.sub{color:var(--muted);font-size:1.5cqw}
+.note{color:var(--muted);font-size:1.3cqw;max-width:86cqw}
+.note b,.sub b{color:inherit;font-weight:600}
+.light .note b,.light .sub b{color:var(--paper-ink)} .dark .note b,.dark .sub b{color:var(--paper)}
+.grid{display:grid;gap:1.4cqw}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1cqw;padding:1.7cqw 2cqw;display:flex;flex-direction:column;gap:.3cqw;min-width:0}
+.big{font-family:var(--display);font-size:3.7cqw;white-space:nowrap;line-height:1.05;color:var(--num);font-variant-numeric:lining-nums}
+.card p.l{font-size:1.45cqw;color:var(--muted)}
+.card h3{font-size:1.7cqw;font-weight:600;line-height:1.25}
+.card p.t{font-size:1.3cqw;color:var(--muted)}
+/* capa e divisórias */
+.cover .in{justify-content:center;gap:1.6cqw}
+.cover h1{font-family:var(--display);font-weight:400;font-size:8cqw;line-height:1}
+.cover .lead{font-size:2.05cqw;line-height:1.35;max-width:72cqw}
+.cover .lead span{color:var(--orange)}
+.divider .in{justify-content:center;gap:.6cqw}
+.divider .n{font-family:var(--display);font-size:9cqw;line-height:1;color:var(--orange)}
+.divider h2{font-size:5.4cqw}
+.divider .sub{font-size:1.9cqw;max-width:66cqw;margin-top:.6cqw}
+/* barras verticais */
+.bars{flex:1;display:flex;align-items:flex-end;gap:1.1cqw;min-height:0;border-bottom:1px solid var(--line)}
+.bars .c{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:.4cqw;min-width:0}
+.bars .v{font-size:1.2cqw;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bars .b{width:100%;height:calc(var(--h) * 1%);background:var(--bar);border-radius:.35cqw .35cqw 0 0}
+.bars .c.hi .b{background:var(--num)} .bars .c.hi .v{color:var(--num)}
+.xl{display:flex;gap:1.1cqw}
+.xl span{flex:1;text-align:center;font-size:1.15cqw;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.3}
+.xl span b{display:block;color:var(--num);font-weight:600}
+/* barras horizontais */
+.hb{display:flex;flex-direction:column;gap:1.05cqw}
+.hb .r{display:grid;grid-template-columns:19cqw 1fr 13cqw;align-items:center;gap:1.2cqw;font-size:1.4cqw}
+.hb .tr{height:1.5cqw;background:var(--line);border-radius:.4cqw;overflow:hidden}
+.hb .tr i{display:block;height:100%;width:calc(var(--w) * 1%);background:var(--bar);border-radius:.4cqw}
+.hb .r.hi i{background:var(--num)} .hb .r.hi{font-weight:600}
+.hb .r span:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.hb .r span:last-child small{font-weight:400;color:var(--muted);font-size:1.2cqw}
+/* tabela */
+table{width:100%;border-collapse:collapse;font-size:1.35cqw;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:.72cqw 1cqw;border-bottom:1px solid var(--line)}
+th{font-size:1.15cqw;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.n,th.n{text-align:right} tr.hi td{font-weight:600} tr.hi td:first-child{color:var(--num)}
+.pill{display:inline-block;font-size:1.05cqw;font-weight:600;padding:.15cqw .7cqw;border-radius:2cqw;border:1px solid var(--line);color:var(--muted)}
+.pill.on{background:var(--num);border-color:var(--num);color:var(--paper)}
+/* split pago x orgânico */
+.split{display:flex;height:4.4cqw;border-radius:.6cqw;overflow:hidden;background:var(--bar)}
+.split i{display:block;background:var(--num);width:calc(var(--w) * 1%)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3cqw}
+.col{display:flex;flex-direction:column;gap:.9cqw;min-width:0}
+.col h3{font-size:1.7cqw;font-weight:600}
+.leg{display:flex;justify-content:space-between;font-size:1.35cqw}
+.leg b{color:var(--num)}
+/* calculadora */
+.calc{display:flex;flex-direction:column;gap:1cqw}
+.calc label{font-size:1.3cqw;color:var(--muted)}
+.calc output{font-family:var(--display);font-size:3.4cqw;color:var(--num);line-height:1.1}
+.calc input[type=range]{width:100%;accent-color:var(--orange-deep);height:1.6cqw}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:1cqw}
+.res div{border-top:1px solid var(--line);padding-top:.7cqw}
+.res strong{display:block;font-family:var(--display);font-weight:400;font-size:2.5cqw;line-height:1.1;font-variant-numeric:lining-nums}
+.res span{font-size:1.2cqw;color:var(--muted)}
+ul.pts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:1cqw}
+ul.pts li{display:grid;grid-template-columns:5cqw 1fr;gap:1.4cqw;align-items:baseline;font-size:1.75cqw;line-height:1.35}
+ul.pts li b{font-family:var(--display);font-weight:400;font-size:2.8cqw;color:var(--orange)}
+/* controles */
+.ctl{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom, 0px));display:flex;gap:6px;align-items:center;background:#221c17;border:1px solid #352d25;border-radius:999px;padding:6px;z-index:5}
+.ctl button{font:600 14px var(--body);color:#f3eee6;background:transparent;border:0;border-radius:999px;padding:9px 14px;cursor:pointer}
+.ctl button:hover{background:#352d25} .ctl button:focus-visible{outline:2px solid #e2682c;outline-offset:1px}
+.ctl button.go{background:#e2682c;color:#17130f}
+.ctl span{font:500 13px var(--body);color:#b5aa9a;padding-inline:6px;font-variant-numeric:tabular-nums}
+body.present{padding:0;overflow:hidden;background:#000}
+body.present .deck{max-width:none;gap:0;height:100%;align-items:center;justify-content:center}
+body.present .slide{display:none;border-radius:0;width:min(100vw, calc(100vh * 16 / 9));flex:none}
+body.present .slide.cur{display:block}
+body.present .ctl{opacity:.25;transition:opacity .2s} body.present .ctl:hover,body.present .ctl:focus-within{opacity:1}
+</style>
+
+<style>.col .card{padding:1.1cqw 1.6cqw}.col .big{font-size:3.2cqw}.dark .res strong{font-size:3.6cqw;color:var(--orange)}.card .eyebrow{font-size:1.05cqw}</style>
+<div class="deck" id="deck">
+
+<section class="slide dark cover"><div class="in">
+  <p class="eyebrow">Relatório de performance · YouTube</p>
+  <h1>Conforto no Desconforto</h1>
+  <p class="lead">O canal do <span>Fabio Gurgel</span> no YouTube: o tamanho da audiência, o melhor momento da história e os primeiros episódios do podcast.</p>
+  <p class="sub">Complementa o relatório de performance no Instagram · dados até 06/10/2026</p>
+  <div class="grid g3" style="margin-top:2cqw">
+    <div class="card"><p class="big">79,7 mil</p><p class="l">inscritos no canal</p></div>
+    <div class="card"><p class="big">5,74 mi</p><p class="l">visualizações desde o início</p></div>
+    <div class="card"><p class="big">394 mil</p><p class="l">views em setembro, recorde do canal</p></div>
+  </div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <p class="eyebrow">Sobre este relatório</p>
+  <h2>Este relatório mostra a casa do <i>Conforto no Desconforto</i> no YouTube: o canal do Fabio Gurgel, onde os episódios completos vão ao ar.</h2>
+  <div class="grid g3" style="margin-top:1cqw">
+    <div class="card"><p class="big" style="font-size:3cqw">01</p><h3>O canal</h3><p class="t">O tamanho do canal desde o início e a evolução ano a ano.</p></div>
+    <div class="card"><p class="big" style="font-size:3cqw">02</p><h3>O momento atual</h3><p class="t">Os últimos 90 dias: recordes e origem das visualizações.</p></div>
+    <div class="card"><p class="big" style="font-size:3cqw">03</p><h3>O podcast no YouTube</h3><p class="t">Como os dois primeiros episódios estão performando.</p></div>
+  </div>
+  <p class="note">Os números do perfil e dos cortes no Instagram estão no relatório de performance no Instagram. Este documento cobre o YouTube.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide dark divider"><div class="in">
+  <p class="n">01</p><h2>O canal</h2>
+  <p class="sub">O tamanho do canal desde o início e a evolução ano a ano.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><p class="eyebrow">Desde o início do canal</p><h2>O tamanho do canal</h2></div>
+  <div class="grid g3">
+    <div class="card"><p class="big">5,74 mi</p><p class="l">visualizações</p></div>
+    <div class="card"><p class="big">537 mil</p><p class="l">horas assistidas</p></div>
+    <div class="card"><p class="big">79,7 mil</p><p class="l">inscritos</p></div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><p class="big">53,5 mi</p><p class="l">impressões de miniaturas</p></div>
+    <div class="card"><p class="big">500+</p><p class="l">vídeos publicados</p></div>
+    <div class="card"><p class="big">61 anos</p><p class="l">de conteúdo assistido, somando as horas</p></div>
+  </div>
+  <p class="note">Números acumulados desde o início do canal, até 06/10/2026.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><h2>2026 já é o maior ano da história do canal</h2><p class="sub">Visualizações por ano, em milhares. 2026 conta até 6 de outubro.</p></div>
+  <div class="bars">
+    <div class="c"><span class="v">177</span><div class="b" style="--h:12.4"></div></div>
+    <div class="c"><span class="v">335</span><div class="b" style="--h:23.5"></div></div>
+    <div class="c"><span class="v">346</span><div class="b" style="--h:24.3"></div></div>
+    <div class="c"><span class="v">445</span><div class="b" style="--h:31.3"></div></div>
+    <div class="c"><span class="v">709</span><div class="b" style="--h:49.8"></div></div>
+    <div class="c"><span class="v">646</span><div class="b" style="--h:45.4"></div></div>
+    <div class="c"><span class="v">394</span><div class="b" style="--h:27.7"></div></div>
+    <div class="c"><span class="v">343</span><div class="b" style="--h:24.1"></div></div>
+    <div class="c"><span class="v">761</span><div class="b" style="--h:53.5"></div></div>
+    <div class="c hi"><span class="v">1.281</span><div class="b" style="--h:90"></div></div>
+  </div>
+  <div class="xl"><span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span>2024</span><span>2025</span><span>2026</span></div>
+  <p class="note"><b>1,28 milhão de visualizações em 2026</b>, 68% acima de 2025 inteiro, faltando quase três meses para o ano acabar. Sozinho, 2026 responde por 22% de todas as views da história do canal.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide dark divider"><div class="in">
+  <p class="n">02</p><h2>O momento atual</h2>
+  <p class="sub">Os últimos 90 dias, de 9 de julho a 6 de outubro de 2026.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><h2>Setembro foi o melhor mês da história</h2><p class="sub">Visualizações por mês, em milhares, de julho de 2025 a setembro de 2026.</p></div>
+  <div class="bars" style="gap:.8cqw">
+    <div class="c"><span class="v">42</span><div class="b" style="--h:9.5"></div></div>
+    <div class="c"><span class="v">67</span><div class="b" style="--h:15.3"></div></div>
+    <div class="c"><span class="v">77</span><div class="b" style="--h:17.5"></div></div>
+    <div class="c"><span class="v">59</span><div class="b" style="--h:13.4"></div></div>
+    <div class="c"><span class="v">63</span><div class="b" style="--h:14.4"></div></div>
+    <div class="c"><span class="v">75</span><div class="b" style="--h:17.2"></div></div>
+    <div class="c"><span class="v">40</span><div class="b" style="--h:9.1"></div></div>
+    <div class="c"><span class="v">55</span><div class="b" style="--h:12.5"></div></div>
+    <div class="c"><span class="v">87</span><div class="b" style="--h:19.9"></div></div>
+    <div class="c"><span class="v">62</span><div class="b" style="--h:14.1"></div></div>
+    <div class="c"><span class="v">99</span><div class="b" style="--h:22.5"></div></div>
+    <div class="c"><span class="v">101</span><div class="b" style="--h:23.1"></div></div>
+    <div class="c"><span class="v">88</span><div class="b" style="--h:20.2"></div></div>
+    <div class="c hi"><span class="v">284</span><div class="b" style="--h:64.7"></div></div>
+    <div class="c hi"><span class="v">394</span><div class="b" style="--h:90"></div></div>
+  </div>
+  <div class="xl" style="gap:.8cqw"><span>jul/25</span><span>ago</span><span>set</span><span>out</span><span>nov</span><span>dez</span><span>jan/26</span><span>fev</span><span>mar</span><span>abr</span><span>mai</span><span>jun</span><span>jul</span><span>ago</span><span>set</span></div>
+  <p class="note"><b>394 mil visualizações em setembro</b>: 5,7 vezes a média mensal dos 12 meses anteriores (69 mil) e mais de 3 vezes o recorde antigo, de março de 2021 (123 mil). A média diária saiu de 3,4 mil em junho para 13,1 mil em setembro.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><p class="eyebrow">Últimos 90 dias · 9/07 a 6/10</p><h2>O momento do canal</h2></div>
+  <div class="grid g3">
+    <div class="card"><p class="big">828,5 mil</p><p class="l">visualizações</p></div>
+    <div class="card"><p class="big">43,6 mil</p><p class="l">horas assistidas</p></div>
+    <div class="card"><p class="big">13.570</p><p class="l">novos inscritos</p></div>
+  </div>
+  <div class="grid g3">
+    <div class="card"><p class="big">5,57 mi</p><p class="l">impressões de miniaturas</p></div>
+    <div class="card"><p class="big">5,78%</p><p class="l">taxa de cliques na miniatura</p></div>
+    <div class="card"><p class="big">96,8%</p><p class="l">das visualizações são orgânicas</p></div>
+  </div>
+  <p class="note">Em 90 dias o canal fez <b>14% de todas as visualizações</b> da sua história. Três em cada quatro vêm da página inicial e dos vídeos sugeridos: é o próprio YouTube recomendando o canal.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><h2>De onde vêm as visualizações</h2><p class="sub">Origem do tráfego nos últimos 90 dias.</p></div>
+  <div class="hb" style="margin-top:.6cqw">
+    <div class="r hi"><span>Página inicial e navegação</span><div class="tr"><i style="--w:100"></i></div><span>505,8 mil <small>61,0%</small></span></div>
+    <div class="r"><span>Vídeos sugeridos</span><div class="tr"><i style="--w:22.4"></i></div><span>113,1 mil <small>13,6%</small></span></div>
+    <div class="r"><span>Pesquisa do YouTube</span><div class="tr"><i style="--w:14.3"></i></div><span>72,3 mil <small>8,7%</small></span></div>
+    <div class="r"><span>Páginas do canal</span><div class="tr"><i style="--w:5.5"></i></div><span>27,7 mil <small>3,3%</small></span></div>
+    <div class="r"><span>Publicidade no YouTube</span><div class="tr"><i style="--w:5.3"></i></div><span>26,6 mil <small>3,2%</small></span></div>
+    <div class="r"><span>Outras origens</span><div class="tr"><i style="--w:16.4"></i></div><span>83,0 mil <small>10,0%</small></span></div>
+  </div>
+  <p class="note" style="margin-top:.8cqw"><b>96,8% das visualizações são orgânicas.</b> Três em cada quatro vêm da página inicial e dos vídeos sugeridos, ou seja, é o próprio YouTube recomendando o canal.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide dark divider"><div class="in">
+  <p class="n">03</p><h2>O podcast no YouTube</h2>
+  <p class="sub">Os dois primeiros episódios do Conforto no Desconforto.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide dark"><div class="in">
+  <div class="head"><p class="eyebrow">O podcast no YouTube</p><h2>Os dois primeiros episódios</h2></div>
+  <div class="grid g2" style="margin-top:.6cqw">
+    <div class="card">
+      <p class="eyebrow">Episódio #01 · no ar desde 24/09</p>
+      <h3>Tallis Gomes: O Preço do Sucesso</h3>
+      <div class="res" style="margin-top:.8cqw">
+        <div><strong>31.115</strong><span>visualizações em 13 dias</span></div>
+        <div><strong>4.301</strong><span>horas assistidas</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <p class="eyebrow">Episódio #02 · no ar desde 01/10</p>
+      <h3>Daniella Cicarelli: O Lado Oculto do Sucesso</h3>
+      <div class="res" style="margin-top:.8cqw">
+        <div><strong>15.725</strong><span>visualizações em 6 dias</span></div>
+        <div><strong>1.414</strong><span>horas assistidas</span></div>
+      </div>
+      <p class="t" style="margin-top:.6cqw">Primeira semana no ar, ainda em crescimento.</p>
+    </div>
+  </div>
+  <p class="note">Somados, os dois episódios passam de <b>46,8 mil visualizações e 5,7 mil horas assistidas</b> em menos de duas semanas.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><p class="eyebrow">Projeção até 31/12/2026</p><h2>Se o ritmo atual se mantiver</h2><p class="sub">Onde o canal chega até o fim do ano, no ritmo dos últimos 28 dias.</p></div>
+  <div class="grid g3">
+    <div class="card"><p class="big">~105 mil</p><p class="l">inscritos em 31/12, contra 79,7 mil hoje</p></div>
+    <div class="card"><p class="big">100 mil</p><p class="l">inscritos em meados de dezembro</p></div>
+    <div class="card"><p class="big">~2,4 mi</p><p class="l">visualizações em 2026, mais de 3 vezes o total de 2025</p></div>
+  </div>
+  <p class="note">Estimativas com base nos últimos 28 dias (8.256 novos inscritos) e na média diária de visualizações de setembro.</p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide light"><div class="in">
+  <div class="head"><p class="eyebrow">Só com tráfego pago</p><h2>Projeção de crescimento pelas campanhas</h2></div>
+  <div class="cols" style="margin-top:.4cqw">
+    <div class="col">
+      <h3>Instagram</h3>
+      <div class="card"><p class="big">+13,9 mil</p><p class="l">novos seguidores por mês</p></div>
+      <div class="card"><p class="big">+42 mil</p><p class="l">seguidores nos próximos 3 meses</p></div>
+      <div class="card"><p class="big">+167 mil</p><p class="l">seguidores em 12 meses</p></div>
+    </div>
+    <div class="col">
+      <h3>YouTube</h3>
+      <div class="card"><p class="big">+7,6 mil</p><p class="l">novos inscritos por mês</p></div>
+      <div class="card"><p class="big">+23 mil</p><p class="l">inscritos nos próximos 3 meses, passando de 100 mil</p></div>
+      <div class="card"><p class="big">+92 mil</p><p class="l">inscritos em 12 meses</p></div>
+    </div>
+  </div>
+  <p class="note">Base: custo médio das campanhas até aqui, R$ 0,22 por seguidor e R$ 0,39 por inscrito. <b>Esse é o piso: o crescimento orgânico vem por cima.</b></p>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+<section class="slide dark"><div class="in" style="justify-content:center;gap:2cqw">
+  <div class="head"><p class="eyebrow">Resumo</p><h2>O que os números mostram</h2></div>
+  <ul class="pts">
+    <li><b>01</b><span>Um canal com 79,7 mil inscritos, 5,74 milhões de visualizações e 537 mil horas assistidas.</span></li>
+    <li><b>02</b><span>O melhor momento da história: 2026 já é o maior ano e setembro, o maior mês, com 394 mil views.</span></li>
+    <li><b>03</b><span>Audiência orgânica: 96,8% das visualizações, a maior parte recomendada pelo próprio YouTube.</span></li>
+    <li><b>04</b><span>Os dois primeiros episódios do podcast somam 46,8 mil visualizações e 5,7 mil horas em menos de duas semanas.</span></li>
+    <li><b>05</b><span>Se o ritmo atual se mantiver, o canal passa de 100 mil inscritos em dezembro de 2026.</span></li>
+  </ul>
+  <div class="foot"><span>Conforto no Desconforto · Relatório de performance no YouTube</span></div>
+</div></section>
+
+</div>
+
+<div class="ctl">
+  <button type="button" id="prev" aria-label="Slide anterior">Anterior</button>
+  <span id="pos">1 / 14</span>
+  <button type="button" id="next" aria-label="Próximo slide">Próximo</button>
+  <button type="button" id="present" class="go">Apresentar</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),cur=0,body=document.body,pos=document.getElementById('pos'),btn=document.getElementById('present');
+  function show(i,scroll){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach(function(s,k){s.classList.toggle('cur',k===cur)});pos.textContent=(cur+1)+' / '+slides.length;if(scroll&&!body.classList.contains('present'))slides[cur].scrollIntoView({behavior:'smooth',block:'center'})}
+  function nearest(){var mid=innerHeight/2,best=0,d=1e9;slides.forEach(function(s,k){var r=s.getBoundingClientRect(),x=Math.abs(r.top+r.height/2-mid);if(x<d){d=x;best=k}});return best}
+  function setPresent(on){body.classList.toggle('present',on);btn.textContent=on?'Sair':'Apresentar';if(on){var el=document.documentElement;if(el.requestFullscreen){var p=el.requestFullscreen();if(p&&p.catch)p.catch(function(){})}}else{if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();slides[cur].scrollIntoView({block:'center'})}show(cur,false)}
+  document.getElementById('prev').onclick=function(){show((body.classList.contains('present')?cur:nearest())-1,true)};
+  document.getElementById('next').onclick=function(){show((body.classList.contains('present')?cur:nearest())+1,true)};
+  btn.onclick=function(){if(!body.classList.contains('present'))cur=nearest();setPresent(!body.classList.contains('present'))};
+  document.addEventListener('keydown',function(e){if(e.target&&e.target.tagName==='INPUT')return;var p=body.classList.contains('present');if(e.key==='ArrowRight'||e.key==='PageDown'||(p&&e.key===' ')){e.preventDefault();show((p?cur:nearest())+1,true)}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show((p?cur:nearest())-1,true)}else if(e.key==='Escape'&&p){setPresent(false)}});
+  document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement&&body.classList.contains('present'))setPresent(false)});
+  addEventListener('scroll',function(){if(!body.classList.contains('present')){cur=nearest();pos.textContent=(cur+1)+' / '+slides.length}},{passive:true});
+  show(0,false);
+
+})();
+</script>
+
+</body>
+</html>
